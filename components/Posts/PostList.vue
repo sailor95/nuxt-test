@@ -1,41 +1,33 @@
 <template>
   <section class="posts-list">
     <PostPreview
-      id="1"
+      v-for="post in posts"
+      :key="post.id"
+      :id="post.id"
       :is-admin="isAdmin"
-      thumbnail="https://easyhonestfinancial.com/wp-content/uploads/2019/01/TECH.jpg"
-      title="Hello there!"
-      previewText="This is my 1st post!"
-    />
-    <PostPreview
-      id="2"
-      :is-admin="isAdmin"
-      thumbnail="https://easyhonestfinancial.com/wp-content/uploads/2019/01/TECH.jpg"
-      title="Hello there! 2"
-      previewText="This is my 2nd post!"
-    />
-    <PostPreview
-      id="3"
-      :is-admin="isAdmin"
-      thumbnail="https://easyhonestfinancial.com/wp-content/uploads/2019/01/TECH.jpg"
-      title="Hello there! 3"
-      previewText="This is my 3rd post!"
+      :thumbnail="post.thumbnail"
+      :title="post.title"
+      :previewText="post.previewText"
     />
   </section>
 </template>
 <script>
-import PostPreview from '@/components/Posts/PostPreview.vue';
+import PostPreview from "@/components/Posts/PostPreview.vue";
 
 export default {
   components: {
-    PostPreview,
+    PostPreview
   },
   props: {
     isAdmin: {
       type: Boolean,
-      default: false,
+      default: false
     },
-  },
+    posts: {
+      type: Array,
+      required: true
+    }
+  }
 };
 </script>
 
